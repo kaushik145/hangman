@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Hangman Game</title>
+	<h1>Hangman Game</h1>
+	<h2>80s style</h2>
+</head>
+<style type="text/css">
+	h1{
+		
+		text-align: center;
+		text-transform: uppercase;
+		color: skyblue;
+		font-size: 100px;
+		background: -webkit-linear-gradient(skyblue 49%, #FFB133 50%);
+    	  -webkit-background-clip: text;
+		  -webkit-text-fill-color: transparent;
+		padding:-50px;
+	}
+	h2{
+		color: #FF33CD;
+		font-size: 85px;
+		-webkit-transform: rotate(-25deg); 
+    	
+	}
+	body{
+		background-color: black;
+	}
+	p{
+		font-family: algerian;
+		font-size: 20px;
+		font-style: italic;
+		color: white;
+		text-transform: uppercase;
+		text-align: center;
+
+	}
+	#game{
+		border-style: dashed;
+		border-color: white;
+		width: 500px;
+		height:550px;
+		margin-left: 700px;
+	}
+	.dashedborder{
+		border-style: dashed;
+		border-color: white;
+		width: 400px;
+		height:550px;
+		margin-left: 270px;
+		margin-top: -550px;
+	}
+
+</style>
+<body>
+	<div id="game">
+			<p>Press any key to get started!</p>
+			<p>Wins</p>
+			<p>Current Word</p>
+			<p>---------</p>
+			<p>Number of guesses Remaining</p>
+			<p>-</p>
+			<p>Letters Already Guessed</p>
+			<p>------</p>
+	</div>
+	<div class="dashedborder">
+		<img src="hangman.jpg" style="width:300px;height: 300px; padding: 50px;">
+	</div>
+	<script type="text/javascript">
+		var currentword1 = ["d", "a", "n", "g", "e", "r", "o", "u", "s"];
+		var currentword2 = ["o","n","e","","l","o","v","e"];
+		var numberofGuesses = 15;
+		var maxGuess = 15;
+		var counter = 0; 
+		var userGuess = [];
+		var correctGuess= [];
+		var i = 0;
+		document.onkeyup = function() {
+			var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+			
+				if (counter != maxGuess){
+					for (i = 0;  i < (currentword1.length); i++) {
+						if (userGuess[i] == currentword1[0] || userGuess[i] == currentword1[1] || userGuess[i] == currentword1[2] || userGuess[i] == currentword1[3] || userGuess[i] == currentword1[4] || userGuess[i] == currentword1[5] || userGuess[i] == currentword1[6] || userGuess[i] == currentword1[7] || userGuess[i] == currentword1[8]) {
+		                	
+		                	correctGuess = userGuess[i];	
+						 	console.log(correctGuess);
+						}
+						
+						else  {
+							counter++;
+							//var guessesLeft = numberofGuesses - 1;
+							numberofGuesses--;
+							console.log("numberofGuesses: " + numberofGuesses);	
+							console.log("Counter: " + counter);
+						}
+					}
+				}
+			
+				else  {
+						
+						alert("Game Over!");
+				}
+			
+			
+			var html = "<p>Press any key to get started!</p>" +
+						"<p>Wins</p>" +
+						"<p>Current Word</p>" +
+						"<p>" + correctGuess +" </p>" +
+						"<p>Number of guesses Remaining</p>" +
+						"<p>" + numberofGuesses +"</p>" +
+						"<p>Letters Already Guessed</p>" +
+						"<p>dangerous</p>"
+
+			document.querySelector('#game').innerHTML = html;
+		}
+		
+	</script>
+	
+</body>
+</html>
+
+
+
+<!--else if (userGuess == currentword2[0] || userGuess == currentword2[1] || userGuess == currentword2[2] || userGuess == currentword2[3] || userGuess == currentword2[4] || userGuess == currentword2[5] || userGuess == currentword2[6] || userGuess == currentword2[7]){
+					var correctGuess = userGuess;
+				 	console.log(correctGuess);
+				} 
+				//SOUND EFFECTS
+
+	    var mute = true; //we start assuming that the user doesn't want sound. Therefore the mute is true
+	    var backgroundMusic = new Audio('orpheus.mp3'); //these are the audio files
+	    var hanged = new Audio('hanged.mp3');
+	    
+	    //SOUND CONTROL
+
+	    muteButton.addEventListener('click', function() { //this controls the mute variable
+	        if (!mute) { //if the mute variable is false, but we don't want sound
+	            mute = true; //we make it true, so we won't have sound
+	            muteButton.innerHTML = "playing without sound";
+	        } else {
+	            mute = false; //otherwise it remains false
+	            muteButton.innerHTML = "playing with sound";
+	            hit.play();
+	        }
+	    });-->
